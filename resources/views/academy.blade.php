@@ -19,11 +19,11 @@
     @include('includes.student-header')
 
     <!-- Main Content Section -->
-    <div class="container mx-auto p-6">
+    <div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-4xl font-extrabold text-left mb-8 
            bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text
            drop-shadow-lg tracking-wide uppercase relative inline-block">
-            Forex Academy
+            DW Academy
 
         </h1>
 

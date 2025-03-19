@@ -26,10 +26,14 @@
                 <!-- Center: Navigation Links -->
                     <nav class="hidden md:flex space-x-6">
                         <a href="{{ route('admin.manage-users') }}" class="text-gray-600 hover:text-blue-500">Users</a>
-                        <a href="{{ route('admin.upload-playlist') }}" class="text-gray-600 hover:text-blue-500">Upload Playlist</a>
+                        <a href="{{ route('admin.upload-playlist') }}" class="text-gray-600 hover:text-blue-500">Upload Playlists</a>
+                        <a href="{{ route('products.create') }}" class="text-gray-600 hover:text-blue-500">Upload Products</a>
+                        <a href="{{ route('product.edit') }}" class="text-gray-600 hover:text-blue-500">Edit Products</a>
+                        <a href="{{ route('order.details') }}" class="text-gray-600 hover:text-blue-500">Order Details</a>
+                        
                     </nav>
 
-                  
+                   
                
                 <!-- Right: Profile Section -->
                 <div class="relative flex items-center space-x-4">
@@ -73,11 +77,16 @@
         </div>
 
         <!-- Mobile Menu -->
-        <nav id="mobile-menu" class="md:hidden hidden bg-white ">
-            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">DASHBOARD</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">FUNNEL</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">CRM</a>
-            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">DM-MATERIALS</a>
+        <nav id="mobile-menu" class="md:hidden hidden bg-white pt-4 pb-4">
+            <a href="{{ route('admin.manage-users') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Users</a>
+            <a href="{{ route('admin.upload-playlist') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Upload Playlists</a>
+            <a href="{{ route('products.create') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Users</a>
+            <a href="{{ route('product.edit') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Edit Products</a>
+            <a href="{{ route('order.details') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Order Details</a>
+          
+                     
+                      
+                        
         </nav>
     </header>
 

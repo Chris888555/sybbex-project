@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PlaylistController extends Controller
 {
+    
     // Ensure only authenticated users can upload playlists
     public function __construct()
     {
         $this->middleware('auth');
     }
+
 
     // Show the form to create a new playlist
     public function create()
@@ -21,9 +23,15 @@ class PlaylistController extends Controller
         return view('admin.upload-playlist');
     }
 
+    
+
     // Store the playlist
     public function store(Request $request)
     {
+         // Check if the user is authenticated and is an admin
+        if (!auth()->check() || auth()->user()->is_admin == 0) {
+            return redirect()->route('admin.login');
+        }
         // Validate the form inputs
         $request->validate([
             'title' => 'required|max:255',

@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
+    <link rel="stylesheet" href="{{ asset('css/scrollbar.css') }}">
+
     @vite(['resources/css/app.css'])
-    <!-- Include your CSS using Vite -->
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-    <!-- Include AlpineJS -->
+
 </head>
+@include('includes.admin-header')
 
 <body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <h2 class="text-2xl font-bold mb-4">Edit Product</h2>
+    <div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
+   
+        <h2 class="text-xl font-bold mb-4">Edit Product</h2>
 
         <!-- Show Success/Error Message -->
         @if(session('success'))
@@ -30,7 +34,20 @@
                     <!-- Clickable Header -->
                     <div class="flex justify-between items-center" @click="open = !open">
                         <p class="text-lg font-semibold">{{ $product->name }}</p>
-                        <span x-text="open ? '▲' : '▼'" class="text-gray-600"></span> <!-- Toggle indicator -->
+                        <div x-data="{ open: false }">
+                            <button @click="open = !open" class="flex items-center space-x-2">
+
+                                <svg x-show="!open" class="w-7 h-7 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-width="2" d="M5 8l5 5 5-5"></path>
+                                </svg>
+                                <svg x-show="open" class="w-7 h-7 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-width="2" d="M5 12l5-5 5 5"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Toggle indicator -->
                     </div>
 
 
@@ -42,9 +59,10 @@
                             @method('PUT')
 
                             <div class="mb-4">
-                                <label for="category" class="block text-sm font-medium text-gray-700">Category (optional)</label>
+                                <label for="category" class="block text-sm font-medium text-gray-700">Category
+                                    (optional)</label>
                                 <input type="text" id="category" name="category"
-                                    value="{{ old('category', $product->category) }}" 
+                                    value="{{ old('category', $product->category) }}"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg">
                             </div>
 

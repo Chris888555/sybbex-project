@@ -89,15 +89,15 @@
 
 
 
-    <div class="container mx-auto p-6">
+    <div class="container w-full max-w-7xl mt-0 mb-0 m-auto p-4 sm:p-8">
         <h1 class="text-2xl font-bold mb-6">Manage Users</h1>
 
         <div class="flex flex-wrap items-center space-x-2 mb-6">
             <!-- Search Form -->
-            <form action="{{ route('admin.manage-users') }}" method="GET" class="flex items-center space-x-2 w-full sm:w-auto mb-4 sm:mb-0">
-            <input type="text" name="search" placeholder="Search by name or email" class="px-4 py-2 border rounded-md w-96" value="{{ $search }}">
+            <form action="{{ route('admin.manage-users') }}" method="GET" class="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
+            <input type="text" name="search" placeholder="Search by name or email" class="rounded-r-none border-r-0 px-4 py-2 border rounded-md w-96 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-light-blue-500 focus:border-light-blue-500 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-light-blue-500 dark:focus:border-light-blue-500" value="{{ $search }}">
                 <input type="hidden" name="view" value="{{ $view }}"> <!-- Ensure 'view' is passed as a hidden field -->
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                <button type="submit" class="border border-blue-500 rounded-l-none px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                     Search
                 </button>
             </form>
@@ -105,12 +105,12 @@
             <!-- Buttons to switch between approved and pending users -->
             <div class="flex space-x-2 w-full sm:w-auto">
                 <button 
-                    class="px-4 py-2 bg-gray-200 text-black rounded-md hover:bg-gray-300 w-full sm:w-auto"
+                    class="px-4 py-2 border border-gray-200 bg-gray-200 text-black rounded-md hover:bg-gray-300 w-full sm:w-auto"
                     onclick="window.location='?view=approved&search={{ $search }}'">
                     Approved Users ({{ $totalApprovedUsers }})
                 </button>
                 <button 
-                    class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto"
+                    class="px-4 py-2  border border-blue-500 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto"
                     onclick="window.location='?view=pending&search={{ $search }}'">
                     Pending Users ({{ $totalPendingUsers }})
                 </button>

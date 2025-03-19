@@ -15,18 +15,19 @@
 @include('includes.student-header')
 
 <body class="bg-gray-100 p-5 md:p-10">
-    <div class="max-w-sm md:max-w-2xl mx-auto w-[90%] bg-white shadow-lg rounded-lg p-6 mt-[100px]">
+    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white shadow-lg rounded-lg p-6 mt-[100px]">
         <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">Sales Funnel Links</h1>
         <p class="text-gray-600 text-center mb-4">Manage and share your custom funnel links.</p>
 
         <ul class="space-y-4">
             <!-- Loop through only the logged-in user's data -->
             <li class="bg-gray-200 p-4 rounded-lg shadow-md">
-                <div class="border border-gray-400 p-2 rounded-md bg-white text-center mb-3">
-                    <p class="text-blue-600 font-medium break-all">{{ url($user->subdomain) }}</p>
+
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <p class="text-blue-600 font-medium text-center break-all">{{ url($user->subdomain) }}</p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-2">
+                <div class="flex flex-wrap justify-center gap-2 mt-4">
                     <!-- Copy Link Button -->
                     <button onclick="copyToClipboard('{{ url($user->subdomain) }}')"
                         class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center w-full md:w-auto">

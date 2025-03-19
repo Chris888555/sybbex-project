@@ -1,0 +1,18 @@
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px; /* Lapad ng scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Kulay ng track (background ng scrollbar) */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Kulay ng mismong scrollbar */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Kulay kapag naka-hover */
+}

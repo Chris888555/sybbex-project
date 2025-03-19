@@ -19,6 +19,7 @@ class ProductController extends Controller
     // Handle the Upload of a Product
     public function uploadProduct(Request $request)
     {
+        
         // Validate the product data
         $request->validate([
             'name' => 'required|string|max:255',

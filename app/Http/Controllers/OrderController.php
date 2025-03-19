@@ -8,24 +8,38 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function orderShow(Request $request)
-{
-    $view = $request->query('view', 'all');
-
-    // Base query
-    $query = Checkout::query();
-
-    // Apply filters based on view
-    if ($view === 'pending') {
-        $query->where('status', 0);
-    } elseif ($view === 'shipped') {
-        $query->where('status', 1);
+    {
+        $view = $request->query('view', 'all');
+        $search = $request->query('search', ''); // Get the search term
+        
+        // Base query
+        $query = Checkout::query();
+        
+        // Apply filters based on view
+        if ($view === 'pending') {
+            $query->where('status', 0);
+        } elseif ($view === 'shipped') {
+            $query->where('status', 1);
+        }
+        
+        // Apply search if provided
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('first_name', 'like', '%' . $search . '%')
+                  ->orWhere('last_name', 'like', '%' . $search . '%');
+            });
+        }
+    
+        // Get the counts for pending and shipped orders
+        $pendingCount = Checkout::where('status', 0)->count();
+        $shippedCount = Checkout::where('status', 1)->count();
+    
+        // Apply pagination and preserve view and search parameters
+        $checkouts = $query->paginate(5)->appends(['view' => $view, 'search' => $search]);
+    
+        return view('order-details', compact('checkouts', 'view', 'pendingCount', 'shippedCount', 'search'));
     }
-
-    // Apply pagination and preserve view parameter
-    $checkouts = $query->paginate(5)->appends(['view' => $view]);
-
-    return view('order-details', compact('checkouts', 'view'));
-}
+    
 
 
 
