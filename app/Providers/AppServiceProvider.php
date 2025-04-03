@@ -1,7 +1,5 @@
 <?php
 
-// app/Providers/AppServiceProvider.php
-
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -19,8 +17,12 @@ class AppServiceProvider extends ServiceProvider
         // Register AdminHeaderComposer for 'includes.admin-header' view
         View::composer('includes.admin-header', AdminHeaderComposer::class);
 
-        // Register SidebarComposer globally for any other view that needs it
-        View::composer('*', SidebarComposer::class); // Apply to all views
+        // Apply SidebarComposer to all views EXCEPT 'sales_funnel'
+        View::composer('*', function ($view) {
+            if ($view->getName() !== 'sales_funnel') {
+                (new SidebarComposer())->compose($view);
+            }
+        });
     }
 
     public function register()

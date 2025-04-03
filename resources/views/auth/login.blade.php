@@ -15,6 +15,7 @@
         }
     </style>
 </head>
+
 <body class="body-bg h-screen flex items-center justify-center px-4" style="font-family:'Lato',sans-serif;">
 <main class="bg-white w-[95%] sm:w-[600px] md:w-[700px] lg:w-[500px] p-8 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
     <section>

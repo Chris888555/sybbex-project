@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Toolbar</title>
     @vite(['resources/css/app.css'])
-    <script src="https://cdn.tailwindcss.com"></script>
+   
 </head>
 
 <body class="bg-gray-100 ">
@@ -18,7 +18,7 @@
 
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">MyBrand</a>
+                    <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">Sybbex Team Ph</a>
                 </div>
 
                 <!-- Center: Navigation Links -->
@@ -26,6 +26,7 @@
                     <a href="{{ route('dashboard') }}" class="text-gray-600 hover:text-blue-500">DASHBOARD</a>
                     <a href="{{ route('funnel.main') }}" class="text-gray-600 hover:text-blue-500">SALES FUNNEL</a>
                     <a href="{{ route('academy') }}" class="text-gray-600 hover:text-blue-500">ACADEMY</a>
+                    <a href="{{ route('marketing.downloadable') }}" class="text-gray-600 hover:text-blue-500">MARKETING MATERIALS</a>
 
                 </nav>
 
@@ -80,9 +81,10 @@
             <nav id="mobile-menu" class="md:hidden hidden bg-white pt-4 pb-4">
                 <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">DASHBOARD</a>
                 <a href="{{ route('funnel.main') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">SALES FUNNEL</a>
+                <a href="{{ route('academy') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">ACADEMY</a>
+                <a href="{{ route('marketing.downloadable') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">MARKETING MATERIALS</a>
 
-
-
+            
             </nav>
     </header>
 

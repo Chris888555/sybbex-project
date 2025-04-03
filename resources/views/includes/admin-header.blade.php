@@ -19,7 +19,7 @@
                 
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">MyBrand</a>
+                    <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">Sybbex Team Ph</a>
                 </div>
 
                 <!-- Center: Navigation Links -->
@@ -27,9 +27,10 @@
                     <nav class="hidden md:flex space-x-6">
                         <a href="{{ route('admin.manage-users') }}" class="text-gray-600 hover:text-blue-500">Users</a>
                         <a href="{{ route('admin.upload-playlist') }}" class="text-gray-600 hover:text-blue-500">Upload Playlists</a>
-                        <a href="{{ route('products.create') }}" class="text-gray-600 hover:text-blue-500">Upload Products</a>
-                        <a href="{{ route('product.edit') }}" class="text-gray-600 hover:text-blue-500">Edit Products</a>
-                        <a href="{{ route('order.details') }}" class="text-gray-600 hover:text-blue-500">Order Details</a>
+                        <!-- <a href="{{ route('products.create') }}" class="text-gray-600 hover:text-blue-500">Upload Products</a> -->
+                        <!-- <a href="{{ route('product.edit') }}" class="text-gray-600 hover:text-blue-500">Edit Products</a>
+                        <a href="{{ route('order.details') }}" class="text-gray-600 hover:text-blue-500">Order Details</a> -->
+                        <a href="{{ route('marketing.index') }}" class="text-gray-600 hover:text-blue-500">Upload Marketing</a>
                         
                     </nav>
 
@@ -83,6 +84,7 @@
             <a href="{{ route('products.create') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Users</a>
             <a href="{{ route('product.edit') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Edit Products</a>
             <a href="{{ route('order.details') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Order Details</a>
+            <a href="{{ route('marketing.index') }}" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Upload Marketing</a>
           
                      
                       

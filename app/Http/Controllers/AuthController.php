@@ -43,10 +43,10 @@ class AuthController extends Controller
             'password.min' => 'Password must be at least 3 characters long.',
             'password.confirmed' => 'Passwords do not match.',
         ]);
-
+    
         // Extract subdomain from email
         $subdomain = str_replace('.', '', explode('@', $request->email)[0]);
-
+    
         // Ensure unique subdomain
         $originalSubdomain = $subdomain;
         $counter = 1;
@@ -54,7 +54,7 @@ class AuthController extends Controller
             $subdomain = $originalSubdomain . $counter;
             $counter++;
         }
-
+    
         // Default profile image
         $defaultProfileUrl = 'https://tse1.mm.bing.net/th?id=OIP.lcdOc6CAIpbvYx3XHfoJ0gHaF3&pid=Api&P=0&h=220';
         $imageContents = file_get_contents($defaultProfileUrl);
@@ -62,19 +62,19 @@ class AuthController extends Controller
         $path = storage_path('app/public/profile_photos/' . $imageName);
         file_put_contents($path, $imageContents);
         $imagePath = 'profile_photos/' . $imageName;
-
+    
         // Get the referral code from the input (passed as a hidden field)
         $referralCode = $request->input('referral_code');
         $referrer = null;
-
+    
         // If a referral code exists, find the user who referred
         if ($referralCode) {
             $referrer = User::where('referral_code', $referralCode)->first();
         }
-
+    
         // Generate a random referral code for the new user
         $generatedReferralCode = Str::random(8); // 8-character random referral code
-
+    
         // Create user
         $user = User::create([
             'name' => $request->name,
@@ -86,13 +86,18 @@ class AuthController extends Controller
             'default_profile' => $imagePath,
             'is_online' => 0,
             'referral_code' => $generatedReferralCode,
-            'referred_by' => $referrer ? $referrer->id : null, // Link the user to the referrer if there is one
+            'referred_by' => $referrer ? $referrer->id : null,
+            'facebook_link' => 'https://www.facebook.com/your-messenger-link',
+            'join_fb_group' => 'https://www.facebook.com/your-gc-group-link',
+            'group_toggle' => 0,
+            'page_link' => 'https://www.facebook.com/page-link', 
+            'page_toggle' => 0, 
         ]);
-
+        
+    
         return back()->with('success', 'Registration successful!');
     }
-
-
+    
 
     
     // Show Login Page
@@ -180,4 +185,45 @@ public function resetPassword(Request $request)
     return back()->with('status', 'Password successfully updated.');
 }
 
+
+
+// Show the form to edit the Facebook link, Join FB Group link, and Page Link
+public function showForm()
+{
+    // Get the current authenticated user
+    $user = Auth::user(); // Assuming the user is authenticated
+    return view('edit-funnel', compact('user'));
 }
+
+// Save the updated Facebook link, Join FB Group link, Page Link, Page Toggle, and Group Toggle
+public function save(Request $request)
+{
+    // Validate the input
+    $request->validate([
+        'facebook_link' => 'nullable|url',
+        'join_fb_group' => 'nullable|url',
+        'page_link' => 'nullable|url',
+    ]);
+
+    // Kunin ang authenticated user
+    $user = Auth::user();
+
+    // I-update ang links
+    $user->facebook_link = $request->facebook_link;
+    $user->join_fb_group = $request->join_fb_group;
+    $user->page_link = $request->page_link;
+
+    // Checkbox values (dahil laging may hidden input, laging may value)
+    $user->page_toggle = $request->page_toggle; 
+    $user->group_toggle = $request->group_toggle;
+
+    $user->save();
+
+    // Redirect back with a success message
+    return redirect()->route('edit-funnel')->with('success', 'Links updated successfully!');
+}
+
+
+
+}
+

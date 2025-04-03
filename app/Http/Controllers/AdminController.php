@@ -144,4 +144,12 @@ class AdminController extends Controller
             'search' => request('search')  // Keep the search parameter
         ])->with('error', 'User is already a regular user.');
     }
+    public function revertToPending(User $user)
+{
+    // Update the user's 'approved' status to false
+    $user->approved = false;
+    $user->save();
+
+    return redirect()->route('admin.manage-users')->with('success', 'User has been reverted to pending.');
+}
 }

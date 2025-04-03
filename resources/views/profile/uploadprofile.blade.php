@@ -9,75 +9,44 @@
     <!-- Include Cropper.js Styles and Script -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    
 </head>
-@include('includes.student-header')
+@include('includes.nav')
   <!-- Main Content Area -->
  
-<body class="bg-gray-100 flex items-center justify-center h-full min-h-screen px-2">
-    <div class="bg-white p-8 rounded-lg shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] w-[90%] max-w-[500px] mx-auto sm:px-6">
+<body class="bg-gray-100 flex items-center justify-center h-full min-h-screen px-2  ">
+    <div class="mt-24 bg-white p-8 rounded-lg shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] w-[90%] max-w-[500px] mx-auto sm:px-6">
         <h2 class="text-2xl font-bold text-center mb-4">Upload Profile Photo</h2>
     
 
-        @if(session('success'))
-    <!-- Mobile View -->
-    <div id="success-alert" class="alert flex md:hidden items-center p-4 mb-4 rounded-md text-sm bg-green-100 text-green-700 border border-green-400 
-        w-[90%] left-1/2 transform -translate-x-1/2 relative m-0" role="alert">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.0043 13.3333V9.16663M9.99984 6.66663H10.0073M9.99984 18.3333C5.39746 18.3333 1.6665 14.6023 1.6665 9.99996C1.6665 5.39759 5.39746 1.66663 9.99984 1.66663C14.6022 1.66663 18.3332 5.39759 18.3332 9.99996C18.3332 14.6023 14.6022 18.3333 9.99984 18.3333Z" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <span>{{ session('success') }}</span>
+  <!-- Success Message -->
+@if(session('success'))
+    <div id="success-message" class="flex w-full overflow-hidden bg-emerald-50 rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:bg-gray-800 mb-4">
+        <div class="flex items-center justify-center w-12 bg-emerald-500">
+            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+            </svg>
+        </div>
+
+        <div class="px-4 py-2 -mx-3">
+            <div class="mx-3">
+                <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+                <p class="text-sm text-gray-600 dark:text-gray-200">{{ session('success') }}</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Desktop View -->
-    <div id="success-alert-desktop" class="alert hidden md:flex items-center p-4 mb-4 rounded-md text-sm bg-green-100 text-green-700 border border-green-400 
-        max-w-lg fixed top-0 right-0 mt-24 mr-4" role="alert">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.0043 13.3333V9.16663M9.99984 6.66663H10.0073M9.99984 18.3333C5.39746 18.3333 1.6665 14.6023 1.6665 9.99996C1.6665 5.39759 5.39746 1.66663 9.99984 1.66663C14.6022 1.66663 18.3332 5.39759 18.3332 9.99996C18.3332 14.6023 14.6022 18.3333 9.99984 18.3333Z" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        <span>{{ session('success') }}</span>
-    </div>
+    <script>
+        // Hide the success message after 3 seconds
+        setTimeout(function() {
+            document.getElementById('success-message').style.display = 'none';
+        }, 3000);
+    </script>
 @endif
 
-@if ($errors->any())
-    <!-- Mobile View -->
-    <div id="error-alert" class="alert flex md:hidden items-center p-4 mb-4 rounded-md text-sm bg-red-100 text-red-700 border border-red-400 
-        w-[90%] left-1/2 transform -translate-x-1/2 relative m-0" role="alert">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.0043 13.3333V9.16663M9.99984 6.66663H10.0073M9.99984 18.3333C5.39746 18.3333 1.6665 14.6023 1.6665 9.99996C1.6665 5.39759 5.39746 1.66663 9.99984 1.66663C14.6022 1.66663 18.3332 5.39759 18.3332 9.99996C18.3332 14.6023 14.6022 18.3333 9.99984 18.3333Z" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <ul class="list-disc pl-5">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
 
-    <!-- Desktop View -->
-    <div id="error-alert-desktop" class="alert hidden md:flex items-center p-4 mb-4 rounded-md text-sm bg-red-100 text-red-700 border border-red-400 
-        max-w-lg fixed top-0 right-0 mt-24 mr-4" role="alert">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.0043 13.3333V9.16663M9.99984 6.66663H10.0073M9.99984 18.3333C5.39746 18.3333 1.6665 14.6023 1.6665 9.99996C1.6665 5.39759 5.39746 1.66663 9.99984 1.66663C14.6022 1.66663 18.3332 5.39759 18.3332 9.99996C18.3332 14.6023 14.6022 18.3333 9.99984 18.3333Z" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <ul class="list-disc pl-5">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<!-- Script to Auto-Hide Alerts -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(() => {
-            document.querySelectorAll('.alert').forEach(alert => {
-                alert.style.display = 'none';
-            });
-        }, 3000); // 3 seconds
-    });
-</script>
         <!-- Image Preview and Upload Icon -->
-<div class="flex justify-center mb-4">
+<div class="flex justify-center mb-4 ">
     <div class="relative">
         <img id="profile-photo-preview" 
              src="{{ asset('storage/' . ($user->profile_picture ? $user->profile_picture : 'profile_photos/' . $user->default_profile)) }}"

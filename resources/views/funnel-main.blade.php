@@ -7,15 +7,18 @@
     <title>Sales Funnel Links</title>
     @vite(['resources/css/app.css'])
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/css/icons.css">
+
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <!-- Include Sidebar -->
-@include('includes.student-header')
+@include('includes.nav')
 
-<body class="bg-gray-100 p-5 md:p-10">
-    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white shadow-lg rounded-lg p-6 mt-[100px]">
+<body class="bg-gray-100 p-5 md:p-10 ">
+    <div class="max-w-sm md:max-w-[800px] mx-auto w-[90%] bg-white shadow-lg rounded-lg p-6 mt-10">
         <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">Sales Funnel Links</h1>
         <p class="text-gray-600 text-center mb-4">Manage and share your custom funnel links.</p>
 
@@ -28,24 +31,32 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-2 mt-4">
-                    <!-- Copy Link Button -->
-                    <button onclick="copyToClipboard('{{ url($user->subdomain) }}')"
-                        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center w-full md:w-auto">
-                        <i class="ph ph-copy mr-2"></i> Copy Link
-                    </button>
+    <!-- Copy Link Button -->
+    <button onclick="copyToClipboard('{{ url($user->subdomain) }}')"
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 flex items-center w-full md:w-auto">
+        <i class="ph ph-copy mr-2"></i> Copy Link
+    </button>
 
-                    <!-- View Funnel Button -->
-                    <a href="{{ url($user->subdomain) }}" target="_blank"
-                        class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 flex items-center w-full md:w-auto">
-                        <i class="ph ph-eye mr-2"></i> View Funnel
-                    </a>
+    <!-- View Funnel Button -->
+    <a href="{{ url($user->subdomain) }}" target="_blank"
+        class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 flex items-center w-full md:w-auto">
+        <i class="ph ph-eye mr-2"></i> View Funnel
+    </a>
 
-                    <!-- Update Subdomain Button -->
-                    <button onclick="openModal('{{ $user->id }}', '{{ $user->subdomain }}')"
-                        class="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 flex items-center w-full md:w-auto">
-                        <i class="ph ph-pencil-simple mr-2"></i> Update Subdomain
-                    </button>
-                </div>
+    <!-- Update Subdomain Button -->
+    <button onclick="openModal('{{ $user->id }}', '{{ $user->subdomain }}')"
+        class="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 flex items-center w-full md:w-auto">
+        <i class="ph ph-pencil-simple mr-2"></i> Update Subdomain
+    </button>
+
+   <!-- Edit Funnel Button -->
+<a href="{{ route('edit-funnel') }}"
+    class="bg-purple-500 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-600 hover:shadow-lg flex items-center w-full md:w-auto transition-all duration-300">
+    <i class="ph ph-pencil mr-2"></i> Edit Funnel
+</a>
+
+
+
             </li>
         </ul>
 
@@ -105,6 +116,29 @@
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<div class="container w-full max-w-7xl mt-6 mb-10 mx-auto sm:p-8">
+    <div x-data="{ open: false }" class="w-[90%] sm:max-w-[800px] mx-auto p-6 bg-white shadow-lg rounded-xl">
+        <button @click="open = !open" class="text-xl font-bold text-gray-800 w-full text-left flex justify-between items-center">
+            Paano Gamitin ang Sales Funnel
+            <span x-text="open ? '▲' : '▼'"></span>
+        </button>
+        
+        <div x-show="open" x-transition class="mt-4 bg-yellow-300 p-6 rounded-lg">
+            <p class="text-gray-600 mb-4">Ang sales funnel ay proseso ng pag-convert ng mga bisita sa customers. Narito ang simpleng hakbang:</p>
+
+            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                <li><span class="font-semibold">Maghanap ng mga potensyal na kliyente –</span> Mahalaga na may makakita ng iyong sales funnel. Maaari kang mag-run ng ads o mag-post sa social media upang makahanap ng mga interesadong kliyente.</li>
+                <li><span class="font-semibold">Ipasok sila sa sales funnel –</span> Siguraduhing dumaan sila sa sales funnel upang ma-educate sila nang tama tungkol sa iyong produkto o serbisyo.</li>
+                <li><span class="font-semibold">Gawing epektibo ang follow-up –</span> Mahalaga ang follow-up upang mapabalik sila sa iyong funnel. Maaari kang magbigay ng valuable information na makakatulong sa kanila sa pagdedesisyon.</li>
+            </ul>
+
+            <p class="mt-4 text-gray-800 font-semibold">Tandaan, ang tamang diskarte at tuloy-tuloy na follow-up ang susi sa mas mataas na conversion!</p>
+        </div>
+    </div>
+</div>
 
     <script>
     function copyToClipboard(link) {

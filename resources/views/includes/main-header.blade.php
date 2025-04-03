@@ -24,12 +24,9 @@
             </button>
         </div>
 
-        <!-- Right: Logo -->
+        <!-- Right: Logo/Text -->
         <div>
-            <a href="{{ route('home') }}">
-                <img src="https://tse4.mm.bing.net/th?id=OIP.BBuCygxvIN0VF8eDBaqSlQHaFj&pid=Api&P=0&h=220" 
-                     alt="Logo" class="h-[40px] h-[40px] object-contain">
-            </a>
+            <a href="{{ route('home') }}" class="text-xl font-bold text-gray-500">Real Estate</a>
         </div>
     </div>
 
@@ -47,7 +44,6 @@
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 </script>
-
 
 <body>
     

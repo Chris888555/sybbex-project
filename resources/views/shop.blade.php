@@ -221,9 +221,10 @@
 
 
         <!-- Cart Sidebar -->
-        <div id="cart-overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden"></div>
+        <div id="cart-overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden" style="z-index: 999;"></div>
+
         <div id="cart-sidebar"
-            class="fixed right-0 top-0 w-full h-full sm:w-[500px] bg-white shadow-lg transform translate-x-full transition-transform">
+            class="fixed right-0 top-0 w-full h-full sm:w-[500px] bg-white shadow-lg transform translate-x-full transition-transform" style="z-index: 999;">
             <div class="p-4 relative">
                 <h2 class="text-2xl font-bold text-purple-500">Cart</h2>
                 <!-- Cart Sidebar Close Button with Custom SVG Icon -->
